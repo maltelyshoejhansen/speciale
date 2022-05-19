@@ -201,6 +201,7 @@ plot2 <- profiles %>%
 
 plot2
 
+#gem plot
 ggsave(filename = "percentilplot.png",
        plot = plot2, 
        path = "/Users/maltefreylyshojhansen/Desktop/Speciale/Speciale data/Kode/Analyse/Grafik",
