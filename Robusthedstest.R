@@ -7,6 +7,7 @@ library(grid)
 library(ggplot2)
 library(cregg)
 library(xtable)
+library(cowplot)
 
 ###ROBUSTHEDSTEST###
 
@@ -333,7 +334,7 @@ plotbalancekøn <- mmbalancekøn %>%
                      xmax = upper),
                  height = 0.5,
                  color = "black") +
-  geom_vline(xintercept = mean(df_balance$køn),
+  geom_vline(xintercept = 0.6755,
              linetype = "longdash",
              color = "black") +
   xlab("Marginal means (kvinde)") +
@@ -372,7 +373,7 @@ plotbalancealder <- mmbalancealder %>%
                      xmax = upper),
                  height = 0.5,
                  color = "black") +
-  geom_vline(xintercept = mean(df_balance$Q3_ALDER),
+  geom_vline(xintercept = 49.55,
              linetype = "longdash",
              color = "black") +
   xlab("Marginal means (gennemsnitlig alder)") +
@@ -382,6 +383,7 @@ plotbalancealder <- mmbalancealder %>%
              space = "free_y") + 
   theme(text = element_text(family = "LM Roman 10"),
         axis.title.x = element_text(size = 10))
+
 plotbalancealder
 
 #gem plot
@@ -415,6 +417,7 @@ mmbalanceuddannelse <- cj(data = df_balance,
                      h0 = mean(df_balance$uddannelse))
 
 #visualisering af resultater
+
 plotbalanceuddannelse <- mmbalanceuddannelse %>%  
   ggplot(., aes(x = estimate, 
                 y = reorder(level, desc(level)))) +
@@ -423,7 +426,7 @@ plotbalanceuddannelse <- mmbalanceuddannelse %>%
                      xmax = upper),
                  height = 0.5,
                  color = "black") +
-  geom_vline(xintercept = mean(df_balance$uddanelse),
+  geom_vline(xintercept = 0.649,
              linetype = "longdash",
              color = "black") +
   xlab("Marginal means (videregående uddannelse)") +
@@ -433,6 +436,8 @@ plotbalanceuddannelse <- mmbalanceuddannelse %>%
              space = "free_y") + 
   theme(text = element_text(family = "LM Roman 10"),
         axis.title.x = element_text(size = 10))
+
+
 
 plotbalanceuddannelse
 
@@ -445,13 +450,13 @@ ggsave(filename = "plotbalanceuddannelse.png",
        dpi = 320)
 
 #samle plots for balancetest i én figur til latex
-balancetest <- grid.arrange(plotbalancekøn, plotbalancealder, plotbalanceuddannelse, ncol = 3)
+balancetest <- plot_grid(plotbalancekøn, plotbalancealder, plotbalanceuddannelse, nrow = 1)
 
 
 #gem plot
 ggsave(filename = "plotbalance.png",
        plot = balancetest, 
        path = "/Users/maltefreylyshojhansen/Desktop/Speciale/Speciale data/Kode/Analyse/Grafik",
-       width = 16, 
+       width = 15, 
        height = 7,
        dpi = 320)
