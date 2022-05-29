@@ -448,7 +448,7 @@ plot14_AMCE <- AMCE_beskæftigelse2 %>%
   geom_vline(xintercept = 0,
              linetype = "longdash",
              color = "black") +
-  xlab("Marginal means for Pr(støtte til kandidat)") +
+  xlab("Sansynglighed for valg af kandidat (AMCE)") +
   ylab("") +
   facet_grid(feature ~ .,
              scales = "free_y",
