@@ -28,7 +28,7 @@ plot_FT <- mm_H1 %>%
   geom_errorbarh(aes(xmin = lower, xmax = upper),
                  height = 0.5) + 
   geom_point(fill = "black") +
-  xlab("Sandsynlighed for valg af kandidat (marginal means") +
+  xlab("Sandsynlighed for valg af kandidat (marginal means)") +
   ylab("") +
   facet_grid(feature ~., 
              scales = "free_y", space = "free_y") +
@@ -46,6 +46,11 @@ ggsave(filename = "Plot_FT.png",
        width = 7, 
        height = 5,
        dpi = 320)
+
+AMCE_H1 <- cj(data = df, 
+            formula =  CHOICE_INDICATOR ~  kand_FT, 
+            id = ~RESPONDENT_ID, #klyngerobuste standardfejl
+            estimate = "amce")
 
 
 #plot for holdning til journalister
