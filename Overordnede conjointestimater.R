@@ -55,7 +55,7 @@ plot1 <- conjoint_mm %>%
   geom_errorbarh(aes(xmin = lower, xmax = upper),
                 height = 0.5) + 
   geom_point(fill = "black") +
-  xlab("Sandsynlighed for valg af kandidat (marginal means") +
+  xlab("Sandsynlighed for valg af kandidat (marginal means)") +
   ylab("") +
   facet_grid(feature ~., 
              scales = "free_y", space = "free_y") +
@@ -69,8 +69,17 @@ plot1
 ggsave(filename = "conjointplot.png",
        plot = plot1, 
        path = "/Users/maltefreylyshojhansen/Desktop/Speciale/Speciale data/Kode/Analyse/Grafik",
-       width = 8, 
-       height = 10)
+       width = 10, 
+       height = 11,
+       dpi = 320)
+
+ggsave(filename = "plotprofilnr.png",
+       plot = plot_profilnr, 
+       path = "/Users/maltefreylyshojhansen/Desktop/Speciale/Speciale data/Kode/Analyse/Grafik",
+       width = 10, 
+       height = 11,
+       dpi = 320)
+
 
 #latex output for samlet conjoint
 latex <- conjoint_mm %>% 
@@ -166,7 +175,7 @@ plot2 <- profiles %>%
   scale_x_continuous("Percentiler", 
                      breaks = c(1, 25, 50, 75, 99),
                      expand = c(0.05, 0.2)) +
-  scale_y_continuous("Estimeret Pr(støtte til kandidat)",
+  scale_y_continuous("Sandsynlighed for valg af kandidat",
                      breaks = c(0.0, 0.2, 0.4, 0.6, 0.8)) +
   facet_grid(feature ~ .,
              scales = "free_y",
