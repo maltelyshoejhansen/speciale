@@ -134,7 +134,7 @@ plot_dist
 ggsave(filename = "plot_dist.png",
        plot = plot_dist, 
        path = "/Users/maltefreylyshojhansen/Desktop/Speciale/Speciale data/Kode/Analyse/Grafik",
-       width = 12, 
+       width = 10, 
        height = 8,
        dpi = 320)
 
@@ -346,6 +346,8 @@ plotbalancekøn <- mmbalancekøn %>%
         axis.title.x = element_text(size = 10))
 plotbalancekøn
 
+axis.ticks.y=element_blank()
+
 #gem plot
 ggsave(filename = "plotbalancekøn.png",
        plot = plotbalancekøn, 
@@ -382,7 +384,8 @@ plotbalancealder <- mmbalancealder %>%
              scales = "free_y",
              space = "free_y") + 
   theme(text = element_text(family = "LM Roman 10"),
-        axis.title.x = element_text(size = 10))
+        axis.title.x = element_text(size = 10),
+        axis.text.y = element_blank())
 
 plotbalancealder
 
@@ -435,9 +438,8 @@ plotbalanceuddannelse <- mmbalanceuddannelse %>%
              scales = "free_y",
              space = "free_y") + 
   theme(text = element_text(family = "LM Roman 10"),
-        axis.title.x = element_text(size = 10))
-
-
+        axis.title.x = element_text(size = 10),
+        axis.text.y = element_blank())
 
 plotbalanceuddannelse
 
@@ -450,13 +452,12 @@ ggsave(filename = "plotbalanceuddannelse.png",
        dpi = 320)
 
 #samle plots for balancetest i én figur til latex
-balancetest <- plot_grid(plotbalancekøn, plotbalancealder, plotbalanceuddannelse, nrow = 1)
-
+balancetest <- plot_grid(plotbalancekøn, plotbalancealder, plotbalanceuddannelse, nrow = 1, rel_widths = c(4.5/9, 2.5/9, 2.5/9))
 
 #gem plot
 ggsave(filename = "plotbalance.png",
        plot = balancetest, 
        path = "/Users/maltefreylyshojhansen/Desktop/Speciale/Speciale data/Kode/Analyse/Grafik",
-       width = 15, 
-       height = 7,
+       width = 10, 
+       height = 9,
        dpi = 320)
