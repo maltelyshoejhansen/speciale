@@ -47,12 +47,6 @@ ggsave(filename = "Plot_FT.png",
        height = 5,
        dpi = 320)
 
-AMCE_H1 <- cj(data = df, 
-            formula =  CHOICE_INDICATOR ~  kand_FT, 
-            id = ~RESPONDENT_ID, #klyngerobuste standardfejl
-            estimate = "amce")
-
-
 #plot for holdning til journalister
 plot_journalister <- mm_H1 %>%
   filter(feature=="Holdning til journalister") %>%
