@@ -73,13 +73,6 @@ ggsave(filename = "conjointplot.png",
        height = 11,
        dpi = 320)
 
-ggsave(filename = "plotprofilnr.png",
-       plot = plot_profilnr, 
-       path = "/Users/maltefreylyshojhansen/Desktop/Speciale/Speciale data/Kode/Analyse/Grafik",
-       width = 10, 
-       height = 11,
-       dpi = 320)
-
 
 #latex output for samlet conjoint
 latex <- conjoint_mm %>% 
@@ -234,4 +227,3 @@ latex <- profiles %>%
 kable(x = latex, 
       format = "latex",
       digits = 2)
-
